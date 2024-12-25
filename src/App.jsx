@@ -69,8 +69,6 @@ export default function App() {
     navigate({ search: `?page=${p}` });
   }
   useEffect(() => {
-    console.log(location.pathname);
-    console.log(location.pathname.includes("blog"));
     const page = searchParams.get("page") ?? 1;
     if (location.pathname.includes("tags")) {
       const tag = location.pathname.split("/").at(-1).replaceAll("-", "");
@@ -80,7 +78,6 @@ export default function App() {
       fetchPosts(Number(page), null, category, null);
     } else if (location.pathname.includes("blog")) {
       const blogId = location.pathname.split("/").at(-1);
-      console.log(blogId);
       fetchPosts(Number(page), null, null, blogId);
     } else fetchPosts(Number(page), null, null, null);
   }, [location.pathname, location.search]);
